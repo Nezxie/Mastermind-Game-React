@@ -1,0 +1,128 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header{
+  max-width: 40%;
+  text-align: left;
+}
+.title{
+  display: flex;
+  align-items: center;
+  h1{
+    margin-right:1em;
+    font-size: 2.5em;
+  }
+}
+.funcButton{
+  display: flex;
+}
+
+.gameInput{
+display: flex;
+justify-content: center;
+}
+
+.gameButton{
+  height: 3em;
+  width: 3em;
+  border-radius: 50%;
+  margin:1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.empty{
+  outline: 3px solid rgba(0,0,0,0);
+  box-shadow:none;
+}
+.correct{
+  outline: 3px solid #4fcc60;
+  box-shadow: 0 0 5px 2px #4fcc60;
+}
+.wrong{
+  outline: 3px solid rgba(0,0,0,0);
+  box-shadow:none;
+}
+.wrong-position{
+  outline: 3px solid #E3CE5F;
+  box-shadow: 0 0 5px 2px #E3CE5F;
+  
+}
+.gameBoardHistory{
+  background-color:#575757;
+  border: #3f3f3f solid 0px;
+  border-right: 15px #3f3f3f solid;
+  border-bottom: 20px #3f3f3f solid;
+  border-radius: 12%;
+  max-width:fit-content;
+  padding: 20px;
+}
+.playerInput{
+  max-width:fit-content;
+  padding: 12px;
+  margin:20px;
+  background-color:#5b626f;
+  border: #3e434d solid 0px;
+  border-right: 10px #3e434d solid;
+  border-bottom: 12px #3e434d solid;
+  border-radius: 12%;
+}
+
+.gameBoardHistory>.gameInput>.gameButton{
+  cursor: default;
+}
+.gameInput>.gameButton{
+  border:2px solid #121212;
+}
+.gameInput>.gameButton:hover{
+  border:2px solid #ffffff;
+}
+.gameBoardHistory>.gameInput>.gameButton:hover{
+  border-color:#121212;
+}
+.yellow-text{
+  color:#E3CE5F
+}
+.green-text{
+  color:#4fcc60;
+}
+.color-0{
+    background-color: #FF004D;
+  }
+  .color-1{
+    background-color: #FFA300;
+  }
+  .color-2{
+    background-color: #00E436;
+  }
+  .color-3{
+    background-color: #29ADFF;
+  }
+  .color-4{
+    background-color: #83769C;
+  }
+  .color-5{
+    background-color: #FF77A8;
+  }
+  .color-6{
+    background-color: #FFCCAA;
+  }
+  .color-7{
+    background-color: #AB5236;
+  }
+  .color-8{
+    background-color: #FFEC27;
+  }
+  .color-9{
+    background-color: #7E2553;
+  }
+
+  .bold-text{
+    font-weight: bold;
+  }
