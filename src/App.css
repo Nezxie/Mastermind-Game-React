@@ -2,19 +2,29 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  font-size: 0.75rem;
+  @media only screen and (min-width: 900px) {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
 }
 
 .header{
-  max-width: 40%;
   text-align: left;
+  @media only screen and (min-width: 900px) {
+    max-width: 40%;
+  }
 }
 .title{
   display: flex;
   align-items: center;
   h1{
     margin-right:1em;
-    font-size: 2.5em;
+    font-size: 2em;
+    @media only screen and (min-width: 900px){
+      font-size: 2.5em;
+    }
   }
 }
 .funcButton{
@@ -24,6 +34,7 @@
 .gameInput{
 display: flex;
 justify-content: center;
+margin-bottom: 1em;
 }
 
 .gameButton{
@@ -34,6 +45,12 @@ justify-content: center;
   display: flex;
   align-items: center;
   justify-content: center;
+   @media only screen and (max-width: 900px) {
+    height: 2em;
+    width: 2em;
+    padding:0.75em;
+    margin:0.5em;
+   }
 }
 
 
@@ -42,7 +59,7 @@ justify-content: center;
   box-shadow:none;
 }
 .correct{
-  outline: 3px solid #4fcc60;
+  outline: 3px outset #4fcc60;
   box-shadow: 0 0 5px 2px #4fcc60;
 }
 .wrong{
@@ -50,41 +67,83 @@ justify-content: center;
   box-shadow:none;
 }
 .wrong-position{
-  outline: 3px solid #E3CE5F;
+  outline: 3px inset #E3CE5F;
   box-shadow: 0 0 5px 2px #E3CE5F;
   
 }
 .gameBoardHistory{
   background-color:#575757;
   border: #3f3f3f solid 0px;
-  border-right: 15px #3f3f3f solid;
-  border-bottom: 20px #3f3f3f solid;
-  border-radius: 12%;
+  border-right: 10px #3f3f3f solid;
+  border-bottom: 10px #3f3f3f solid;
+  border-radius: 2%;
   max-width:fit-content;
   padding: 20px;
+  @media (prefers-color-scheme: light){
+    background-color:#a9d6e5;
+    border: #89c2d9 solid 0px;
+    border-right: 10px #89c2d9 solid;
+    border-bottom: 10px #89c2d9 solid;
+  }
 }
 .playerInput{
   max-width:fit-content;
-  padding: 12px;
-  margin:20px;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-bottom:20px;
   background-color:#5b626f;
   border: #3e434d solid 0px;
   border-right: 10px #3e434d solid;
-  border-bottom: 12px #3e434d solid;
-  border-radius: 12%;
+  border-bottom: 10px #3e434d solid;
+  border-radius: 2%;
+  @media (prefers-color-scheme: light){
+    background-color:#61a5c2;
+    border: #468faf solid 0px;
+    border-right: 10px #468faf solid;
+    border-bottom: 10px #468faf solid;
+  }
+  
 }
+@media only screen and (max-width: 900px) {
+    .playArea{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 
 .gameBoardHistory>.gameInput>.gameButton{
   cursor: default;
 }
 .gameInput>.gameButton{
   border:2px solid #121212;
+  @media (prefers-color-scheme: light){
+    border:2px solid #ededed;
+  }
 }
 .gameInput>.gameButton:hover{
   border:2px solid #ffffff;
+  @media (prefers-color-scheme: light){
+    border:2px solid #121212;
+  }
 }
 .gameBoardHistory>.gameInput>.gameButton:hover{
   border-color:#121212;
+  @media (prefers-color-scheme: light){
+    border-color:#ededed;
+  }
+}
+p:has(span.yellow-text){
+  border: #E3CE5F inset 2px;
+  padding: 5px;
+}
+p:has(span.green-text){
+  border: #4fcc60 outset 2px;
+  padding: 5px;
 }
 .yellow-text{
   color:#E3CE5F

@@ -110,11 +110,11 @@ function triggerWin(isWin){
   return result;
 }
 if(isGameRunning){
-gameBoardView = <><div className='playerInput'>
+gameBoardView = <div className='playArea'><div className='playerInput'>
           <GameInput clickHandle={clickGameButton} selectedAnswer={currentMove}/>
           <button onClick={onPlay}>Save answer</button>
         </div>
-        <GameBoard history={history}/></>
+        <GameBoard history={history}/></div>
 }
   return (
     <>
@@ -205,7 +205,7 @@ function Header({isRunning, startGame, message, winMsg}){
   return(
     <div className='header'>
       <div className='title'>
-      <h1>Mastermind</h1>
+      <h1>Mastermind 🧠</h1>
       <button onClick={startGame} className='funcButton'>{value}</button>
       </div>
       <div>
