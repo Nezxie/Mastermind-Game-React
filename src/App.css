@@ -108,6 +108,9 @@ margin-bottom: 1em;
   }
   
 }
+.playArea{
+  margin-left:2em;
+}
 @media only screen and (max-width: 900px) {
     .playArea{
       display:flex;
@@ -137,6 +140,23 @@ margin-bottom: 1em;
     border-color:#ededed;
   }
 }
+.difficulty-controls{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-input{
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap:5px;
+}
+#pieces-input, #colors-input{
+  width: 6em;
+  padding: 6px 8px;
+  text-align: center;
+}
 p:has(span.yellow-text){
   border: #E3CE5F inset 2px;
   padding: 5px;
@@ -145,6 +165,7 @@ p:has(span.green-text){
   border: #4fcc60 outset 2px;
   padding: 5px;
 }
+
 .yellow-text{
   color:#E3CE5F
 }
@@ -181,7 +202,9 @@ p:has(span.green-text){
   .color-9{
     background-color: #7E2553;
   }
-
+ .color-10{
+    background-color: #ae53d1;
+  }
   .bold-text{
     font-weight: bold;
   }

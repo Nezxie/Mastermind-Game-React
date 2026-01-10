@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export default function Game() {
-  const howManyPieces = 5;
-  const howManyColors = 5; //2-10
   let gameBoardView;
+  const [userhowManyPieces, setuserHowManyPieces]=useState(5);
+  const [userhowManyColors, setuserHowManyColors]=useState(5); //no more than 10, they are styled up to 10 right now
+  const [howManyPieces, setHowManyPieces]=useState(5);
+  const [howManyColors, setHowManyColors]=useState(5); //no more than 10, they are styled up to 10 right now
   const [isGameRunning,setIsGameRunning] = useState(false);
   const [controlMessage, setControlMessage]=useState("Click on the Start button to begin.");
   const [winLoseStatus,setWinLoseStatus]=useState("");
@@ -33,19 +35,27 @@ export default function Game() {
 
   function startGame(){
     setControlMessage(`You have 10 more tries`);
+    setHowManyPieces(userhowManyPieces);
+    setHowManyColors(userhowManyColors);
+    setTriesCounter(0);
     setIsGameRunning(true);
+  }
+
+  useEffect(() => {
+    if (!isGameRunning) return;
+
     let winCode = newWinningSequence(howManyColors, howManyPieces);
     setWinningSequence(winCode);
     setHistory(
-  Array.from({ length: 10 }, () =>
-  Array.from({ length: howManyPieces }, () => ({
-    value: null,
-    status: "empty"
-  })))
-  );
+    Array.from({ length: 10 }, () =>
+    Array.from({ length: howManyPieces }, () => ({
+      value: null,
+      status: "empty"
+    })))
+    );
     setCurrentMove(Array(howManyPieces).fill(null));
-    setTriesCounter(0);
-  }
+}, [isGameRunning, howManyPieces, howManyColors]);
+
 function triggerWin(isWin){
   setIsGameRunning(false);
   if(isWin){
@@ -118,7 +128,7 @@ gameBoardView = <div className='playArea'><div className='playerInput'>
 }
   return (
     <>
-      <Header isRunning={isGameRunning} startGame={startGame} message={controlMessage} winMsg={winLoseStatus}/>
+      <Header isRunning={isGameRunning} startGame={startGame} message={controlMessage} winMsg={winLoseStatus} howManyPieces={userhowManyPieces} howManyColors={userhowManyColors} setHowManyColors={setuserHowManyColors} setHowManyPieces={setuserHowManyPieces}/>
       {gameBoardView}
     </>
   )
@@ -174,7 +184,7 @@ function GameHistoryItem({selectedAnswer}){
   );
 }
 
-function Header({isRunning, startGame, message, winMsg}){
+function Header({isRunning, startGame, message, winMsg, howManyPieces, howManyColors, setHowManyColors, setHowManyPieces}){
   let value;
   const animationWin=    <DotLottieReact
       src="https://lottie.host/30ad829e-f72d-4c70-8b7c-66ed4da7704a/RvIynea4K6.lottie"
@@ -214,6 +224,31 @@ function Header({isRunning, startGame, message, winMsg}){
          To reset the game click on the arrow button.</p>
          <p><span className='green-text'>Green </span> means correct guess on correct position</p>
          <p><span className='yellow-text'>Yellow</span> means correct guess on wrong position</p>
+         <p>You can change the difficulty here, new settings will be applied after you start a new game.</p>
+         <div className='difficulty-controls'>
+          <div className="form-input">
+          <label htmlFor="pieces-range">Pieces per row: {howManyPieces}</label>
+            <input
+              id="pieces-range"
+              type="range"
+              min="2"
+              max="10"
+              value={howManyPieces}
+              onChange={e => setHowManyPieces(+e.target.value)}
+                />
+            </div>
+            <div className="form-input">
+            <label htmlFor="colors-range">Colors available: {howManyColors+1}</label>
+            <input
+              id="colors-range"
+              type="range"
+              min="1"
+              max="9"
+              value={howManyColors}
+              onChange={e => setHowManyColors(+e.target.value)}
+                />
+              </div>
+         </div>
       <p className='bold-text'>{message}</p>
       {animationToDisplay}
       </div>
