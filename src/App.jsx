@@ -3,6 +3,7 @@ import './App.css'
 import GameInput from './GameInput.jsx'
 import GameBoard from './GameBoard.jsx'
 import Header from './Header.jsx'
+import GameHistoryItem from './GameHistoryItem.jsx'
 
 /* Functions used:
  - newWinningSequence - generates an array of numbers that the user shall recreate in order to win
@@ -26,7 +27,7 @@ export default function Game() {
     status: "empty"
   })))
   );
-  
+
   //user input state
   const [userhowManyPieces, setuserHowManyPieces]=useState(5);
   const [userhowManyColors, setuserHowManyColors]=useState(5); //no more than 10, they are styled up to 10 right now
@@ -40,7 +41,7 @@ export default function Game() {
 
   //ui messages [probably could be reduced to 1 state]
   const [controlMessage, setControlMessage]=useState("Click on the Start button to begin.");
-  const [winLoseStatus,setWinLoseStatus]=useState("");
+  const [winLoseStatus,setWinLoseStatus]=useState({status:"", winSequence:<></>});
 
   let gameBoardView;
   if(isGameRunning){
@@ -92,13 +93,17 @@ export default function Game() {
     return result;
   }
   
-  function triggerWin(isWin){
+  function triggerWin(isWin,winningRow){
     setIsGameRunning(false);
     if(isWin){
-      setWinLoseStatus("win");
+      let winSequence = 
+        <div className='gameBoardHistory winningSequence'>
+          <GameHistoryItem count={howManyPieces} selectedAnswer={winningRow}/>
+        </div>;
+      setWinLoseStatus({status:"win",winSequence:winSequence});
     }
     else{
-      setWinLoseStatus("lose");
+      setWinLoseStatus({status:"lose", winSequence:<></>});
       setControlMessage("You lose, try again!")
     }
     return;
@@ -108,6 +113,7 @@ export default function Game() {
 
 function startGame(){
     setControlMessage(`You have 10 more tries`);
+    setWinLoseStatus({status:"", winSequence:<></>})
     setHowManyPieces(userhowManyPieces);
     setHowManyColors(userhowManyColors);
     setTriesCounter(0);
@@ -134,7 +140,8 @@ function startGame(){
       let newMove = currentMove.map((value, index) => ({ value, status: statuses[index] }));
       if(statuses.length === howManyPieces && statuses.every(value => value === "correct")){
         setControlMessage(`You won in ${triesCounter+1} moves!`);
-        triggerWin(true);
+        triggerWin(true,newMove);
+        return;
       }
       else{
         setControlMessage(`You have ${9-triesCounter} more tries`);
@@ -152,8 +159,9 @@ function startGame(){
   
   return (
     <>
-      <Header isRunning={isGameRunning} startGame={startGame} message={controlMessage} winMsg={winLoseStatus} howManyPieces={userhowManyPieces} howManyColors={userhowManyColors} setHowManyColors={setuserHowManyColors} setHowManyPieces={setuserHowManyPieces}/>
+      <Header isRunning={isGameRunning} startGame={startGame} message={controlMessage} winMsg={winLoseStatus.status} howManyPieces={userhowManyPieces} howManyColors={userhowManyColors} setHowManyColors={setuserHowManyColors} setHowManyPieces={setuserHowManyPieces}/>
       {gameBoardView}
+      {winLoseStatus.winSequence}
     </>
   )
 }

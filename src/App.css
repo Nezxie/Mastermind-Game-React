@@ -8,6 +8,30 @@
     justify-content: space-between;
     font-size: 1rem;
   }
+  --red:#da0041;
+  --orange:#cb6c00;
+  --blue:#1D2B53;
+  --green:#008751;
+  --lime:#0bbd17;
+  --purple:#7E2553;
+  --pink:#cc5480;
+  --light-blue:#2294db;
+  --light-purple:#72658a;
+  --brown:#8a442e;
+  --gray:#917a65;
+  @media (prefers-color-scheme: light){
+    --orange:#fbb740;
+    --pink:#fabad1;
+    --light-blue:#299fff;
+    --lime:#21f051;
+    --red:#ff475f;
+    --blue:#4fc5c3;
+    --green:#1bd088;
+    --purple:#e196ff;
+    --light-purple:#8872c9;
+    --brown:#d68d77;
+    --gray:#c6c1bb;
+  }
 }
 
 .header{
@@ -34,7 +58,9 @@
 .gameInput{
 display: flex;
 justify-content: center;
-margin-bottom: 1em;
+}
+.gameInput+button{
+  margin-top:1em;
 }
 
 .gameButton{
@@ -85,6 +111,16 @@ margin-bottom: 1em;
     border-right: 10px #89c2d9 solid;
     border-bottom: 10px #89c2d9 solid;
   }
+  &.winningSequence{
+    align-self: flex-start;
+    justify-self: center;
+    margin-top:1.5em;
+  }
+   @media only screen and (max-width: 900px) {
+    border-right-width:5px;
+    border-bottom-width:5px;  
+   }
+
 }
 .playerInput{
   max-width:fit-content;
@@ -106,6 +142,10 @@ margin-bottom: 1em;
     border-right: 10px #468faf solid;
     border-bottom: 10px #468faf solid;
   }
+  @media only screen and (max-width: 900px) {
+    border-right-width:5px;
+    border-bottom-width:5px;  
+   }
   
 }
 .playArea{
@@ -173,37 +213,37 @@ p:has(span.green-text){
   color:#4fcc60;
 }
 .color-0{
-    background-color: #FF004D;
+    background-color: var(--red);
   }
   .color-1{
-    background-color: #FFA300;
+    background-color: var(--orange);
   }
   .color-2{
-    background-color: #00E436;
+    background-color: var(--green);
   }
   .color-3{
-    background-color: #29ADFF;
+    background-color: var(--light-blue);
   }
   .color-4{
-    background-color: #83769C;
+    background-color: var(--light-purple);
   }
   .color-5{
-    background-color: #FF77A8;
+    background-color: var(--pink);
   }
   .color-6{
-    background-color: #FFCCAA;
+    background-color: var(--lime) ; 
   }
   .color-7{
-    background-color: #AB5236;
+    background-color: var(--brown);
   }
   .color-8{
-    background-color: #FFEC27;
+    background-color: var(--blue); 
   }
   .color-9{
-    background-color: #7E2553;
+    background-color: var(--purple);
   }
  .color-10{
-    background-color: #ae53d1;
+    background-color: var(--gray);
   }
   .bold-text{
     font-weight: bold;
